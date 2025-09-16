@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../CSS/TP1Styles.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.tp1.TP1Controller">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox prefHeight="80.0" prefWidth="600.0" styleClass="hbTitre" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="lblTitre" prefHeight="80.0" prefWidth="400.0" styleClass="lblTitre" text="TP1 : Messagerie" />
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <VBox prefHeight="320.0" prefWidth="170.0" spacing="20.0" styleClass="vbExos" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="cmdEnvoyer" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onMouseClicked="#menuClicked" prefHeight="25.0" prefWidth="170.0" styleClass="cmdExo" text="Envoyer">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/Send.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="cmdRecevoir" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onMouseClicked="#menuClicked" prefHeight="25.0" prefWidth="170.0" styleClass="cmdExo" text="Recevoir">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/Receive.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="apEnvoyer" prefHeight="320.0" prefWidth="430.0" styleClass="apExos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="60.0" layoutY="26.0" text="Expéditeurs" />
+                        <ListView fx:id="lstExpediteurs" layoutX="60.0" layoutY="50.0" prefHeight="149.0" prefWidth="112.0" />
+                        <Label layoutX="259.0" layoutY="26.0" text="Destinataires" />
+                        <ListView fx:id="lstDestinataires" layoutX="259.0" layoutY="50.0" prefHeight="149.0" prefWidth="112.0" />
+                        <Label layoutX="60.0" layoutY="221.0" text="Votre message" />
+                        <TextField fx:id="txtMessage" layoutX="160.0" layoutY="217.0" prefHeight="25.0" prefWidth="214.0" />
+                        <Button fx:id="cmdEnvoyerMessage" layoutX="60.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#cmdEnvoyerMessageClicked" prefHeight="25.0" prefWidth="314.0" text="Envoyer" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="apRecevoir" prefHeight="320.0" prefWidth="430.0" styleClass="apExos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="35.0" layoutY="18.0" text="Destinataires" />
+                        <ComboBox fx:id="cboDestinataires" layoutX="250.0" layoutY="14.0" onAction="#cboDestinatairesClicked" prefWidth="150.0" />
+                        <TreeView fx:id="tvMessages" layoutX="35.0" layoutY="55.0" prefHeight="255.0" prefWidth="365.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
