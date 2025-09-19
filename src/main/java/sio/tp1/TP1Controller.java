@@ -37,6 +37,7 @@ public class TP1Controller implements Initializable {
 
     private HashMap<String, ArrayList<Message>> maMessagerie;
 
+
     @FXML
     private ComboBox cboDestinataires;
     @FXML
@@ -105,25 +106,32 @@ public class TP1Controller implements Initializable {
     public void cboDestinatairesClicked(Event event) {
         TreeItem racine = new TreeItem<>("Tous les messages");
 
-       /*TreeItem noeudMenu = new TreeItem<>("Pas de commentaire");
-       racine.getChildren().add(noeudMenu);
-        tvMessages.setRoot(racine);
+       TreeItem noeudMenu = new TreeItem<>("Pas de commentaire");
+       //TreeItem noeudMessage = new TreeItem<>("Message n°");
+
         /*tvMessages.setShowRoot(true);
         racine.setExpanded(true);*/
-        TreeItem noeudMessage;
-        TreeItem noeudDestinataire;
+        int compteurMessage = 1;
 
-        for (String destinataire :maMessagerie.keySet()){
-            racine.getChildren().add(destinataire);
-            for (Message message: maMessagerie.get(destinataire)){
-                noeudMessage = new TreeItem<>("Message n°" + message);
+
+
+            for (String message : maMessagerie.keySet()){
+                TreeItem noeudMessage = new TreeItem<>(message);
+                TreeItem noeudNumeroMessage = new TreeItem<>("Messsage n°"+compteurMessage);
                 racine.getChildren().add(noeudMessage);
+                noeudMessage.getChildren().add(noeudNumeroMessage);
+                compteurMessage++;
+                System.out.println("Message trouvé : " + message);
 
             }
-        }
-        tvMessages.setRoot(racine);
+
+
+
         tvMessages.setShowRoot(true);
-        racine.setExpanded(true);
+        tvMessages.setRoot(racine);
+
+
+
 
 
 
