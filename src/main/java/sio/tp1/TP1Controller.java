@@ -95,6 +95,18 @@ public class TP1Controller implements Initializable {
             alert.setHeaderText("Veuillez saisir un expediteur");
             alert.showAndWait();
         } else {
+            String expediteur = lstExpediteurs.getSelectionModel().getSelectedItem().toString();
+            String destinataire = lstDestinataires.getSelectionModel().getSelectedItem().toString();
+            String contenuMessage = txtMessage.getText();
+
+            Message message = new Message(expediteur,destinataire,contenuMessage);
+
+            if (!maMessagerie.containsKey(destinataire)){
+                maMessagerie.put(destinataire,new ArrayList<>());
+            }
+            maMessagerie.get(destinataire).add(message);
+
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Messagerie");
             alert.setHeaderText("Message envoyé");
@@ -115,6 +127,7 @@ public class TP1Controller implements Initializable {
 
 
 
+
             for (String message : maMessagerie.keySet()){
                 TreeItem noeudMessage = new TreeItem<>(message);
                 TreeItem noeudNumeroMessage = new TreeItem<>("Messsage n°"+compteurMessage);
@@ -124,6 +137,8 @@ public class TP1Controller implements Initializable {
                 System.out.println("Message trouvé : " + message);
 
             }
+
+
 
 
 
