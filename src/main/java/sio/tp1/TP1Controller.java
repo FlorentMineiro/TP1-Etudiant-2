@@ -123,33 +123,42 @@ public class TP1Controller implements Initializable {
 
         /*tvMessages.setShowRoot(true);
         racine.setExpanded(true);*/
-        int compteurMessage = 1;
+
+        String destinataireChoisi = cboDestinataires.getSelectionModel().getSelectedItem().toString();
+        ArrayList<Message> messagesEnvoye = maMessagerie.get(destinataireChoisi);
 
 
 
+        if (!(messagesEnvoye.isEmpty())){
+            int compteurMessage = 1;
+            for (Message messageRecu : messagesEnvoye){
+                TreeItem noeudMessage = new TreeItem<>("Message n°" + compteurMessage);
 
-            for (String message : maMessagerie.keySet()){
+                TreeItem noeudExpediteur = new TreeItem<>("De => "+messageRecu.getExpediteur());
+                TreeItem noeudContenuMessage = new TreeItem<>("Message => "+ messageRecu.getContenuDuMessage());
+                noeudMessage.getChildren().add(noeudExpediteur);
+                noeudMessage.getChildren().add(noeudContenuMessage);
+
+
+                racine.getChildren().add(noeudMessage);
+                compteurMessage++;
+            }
+
+
+        }
+        tvMessages.setRoot(racine);
+
+            /*for (String message : maMessagerie.keySet()){
                 TreeItem noeudMessage = new TreeItem<>(message);
+                for (String numeroMessage : maMessagerie.get(message).keySet()){
+
+                }
                 TreeItem noeudNumeroMessage = new TreeItem<>("Messsage n°"+compteurMessage);
                 racine.getChildren().add(noeudMessage);
                 noeudMessage.getChildren().add(noeudNumeroMessage);
                 compteurMessage++;
                 System.out.println("Message trouvé : " + message);
 
-            }
-
-
-
-
-
-        tvMessages.setShowRoot(true);
-        tvMessages.setRoot(racine);
-
-
-
-
-
-
-
+            }*/
     }
 }
