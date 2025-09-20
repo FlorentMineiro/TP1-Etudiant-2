@@ -105,6 +105,8 @@ public class TP1Controller implements Initializable {
                 maMessagerie.put(destinataire,new ArrayList<>());
             }
             maMessagerie.get(destinataire).add(message);
+            //cboDestinataires.getSelectionModel().select(destinataire);
+            cboDestinatairesClicked(null);
 
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -121,15 +123,14 @@ public class TP1Controller implements Initializable {
        TreeItem noeudMenu = new TreeItem<>("Pas de commentaire");
        //TreeItem noeudMessage = new TreeItem<>("Message n°");
 
-        /*tvMessages.setShowRoot(true);
-        racine.setExpanded(true);*/
+
 
         String destinataireChoisi = cboDestinataires.getSelectionModel().getSelectedItem().toString();
         ArrayList<Message> messagesEnvoye = maMessagerie.get(destinataireChoisi);
 
 
 
-        if (!(messagesEnvoye.isEmpty())){
+        if (!(messagesEnvoye.isEmpty()) && messagesEnvoye != null){
             int compteurMessage = 1;
             for (Message messageRecu : messagesEnvoye){
                 TreeItem noeudMessage = new TreeItem<>("Message n°" + compteurMessage);
@@ -138,27 +139,12 @@ public class TP1Controller implements Initializable {
                 TreeItem noeudContenuMessage = new TreeItem<>("Message => "+ messageRecu.getContenuDuMessage());
                 noeudMessage.getChildren().add(noeudExpediteur);
                 noeudMessage.getChildren().add(noeudContenuMessage);
-
-
                 racine.getChildren().add(noeudMessage);
                 compteurMessage++;
+
             }
-
-
         }
+
         tvMessages.setRoot(racine);
-
-            /*for (String message : maMessagerie.keySet()){
-                TreeItem noeudMessage = new TreeItem<>(message);
-                for (String numeroMessage : maMessagerie.get(message).keySet()){
-
-                }
-                TreeItem noeudNumeroMessage = new TreeItem<>("Messsage n°"+compteurMessage);
-                racine.getChildren().add(noeudMessage);
-                noeudMessage.getChildren().add(noeudNumeroMessage);
-                compteurMessage++;
-                System.out.println("Message trouvé : " + message);
-
-            }*/
     }
 }
